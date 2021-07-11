@@ -1,6 +1,8 @@
 import os
 import json
 
+keys = ['qwertyuiop']
+
 def save(bottles):
     file = open('bottles.json', 'w')
     json.dump(bottles, file)
@@ -14,3 +16,6 @@ def load():
         return bottles
     else:
         return {}
+        
+def checkLogin(key):
+    return key in keys
