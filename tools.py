@@ -1,3 +1,5 @@
+import os
+
 def save(bottles):
     file = open('bottles.json', 'w')
     json.dump(bottles, file)
