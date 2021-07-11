@@ -5,7 +5,7 @@ import tools
 
 app = Flask(__name__)
 
-bottles = load()
+bottles = tools.load()
 
 @app.route('/get')
 def getcmd():
