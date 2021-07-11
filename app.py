@@ -1,6 +1,5 @@
 from flask import Flask
 from flask import request
-import json
 import tools
 
 app = Flask(__name__)
