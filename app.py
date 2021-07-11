@@ -10,7 +10,7 @@ bottles = tools.load()
 @app.route('/create')
 def createcmd():
     location = request.args.get('id')
-    public = int(request.args.get('type'))
+    public = int(request.args.get('public'))
     bottles[location] = {count:0,public:public};
     tools.save(bottles)
     return json.dumps({"result":"ok"})
