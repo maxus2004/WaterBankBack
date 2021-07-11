@@ -17,7 +17,7 @@ def getcmd():
 def setcmd():
     location = request.args.get('id')
     count = int(request.args.get('count'))
-    bottles[location] = count;
+    bottles[location] = count
     tools.save(bottles)
     return json.dumps({"result":"ok"})
 
@@ -25,7 +25,7 @@ def setcmd():
 def addcmd():
     location = request.args.get('id')
     count = int(request.args.get('count'))
-    bottles[location] += count;
+    bottles[location] += count
     tools.save(bottles)
     return json.dumps({"result":"ok"})
     
@@ -35,6 +35,19 @@ def removecmd():
     count = int(request.args.get('count'))
     if bottles[location] >= count:
         bottles[location] -= count
+        tools.save(bottles)
+        return json.dumps({"result":"ok"})
+    else:
+        return json.dumps({"result":"not_enough_bottles"})
+        
+@app.route('/move')
+def removecmd():
+    fromId = request.args.get('from')
+    toId = request.args.get('to')
+    count = int(request.args.get('count'))
+    if bottles[fromId] >= count:
+        bottles[fromId] -= count
+        bottles[toId] += count
         tools.save(bottles)
         return json.dumps({"result":"ok"})
     else:
