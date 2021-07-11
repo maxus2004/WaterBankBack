@@ -41,7 +41,7 @@ def removecmd():
         return json.dumps({"result":"not_enough_bottles"})
         
 @app.route('/move')
-def removecmd():
+def movecmd():
     fromId = request.args.get('from')
     toId = request.args.get('to')
     count = int(request.args.get('count'))
