@@ -7,6 +7,16 @@ app = Flask(__name__)
 
 bottles = tools.load()
 
+@app.route('/login')
+def getallcmd():
+    password = request.args.get('pass')
+    if password != "pass"
+        return json.dumps({"result":"not_authorised"})
+    key = tools.makeKey()
+    resp = make_response(json.dumps({"key":key}))
+    resp.set_cookie('key', key)
+    return resp
+
 @app.route('/create')
 def createcmd():
     if not tools.check(request.cookies.get('key')):
