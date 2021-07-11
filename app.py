@@ -9,8 +9,8 @@ bottles = {}
 @app.route('/get')
 def getcmd():
     location = request.args.get('id')
-    
-    return json.dumps({"count":5})
+   
+    return json.dumps({"count":bottles[location]})
 
 @app.route('/set')
 def setcmd():
