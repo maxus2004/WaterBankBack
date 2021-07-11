@@ -58,7 +58,7 @@ def movecmd():
     count = int(request.args.get('count'))
     if bottles[fromId]['count'] >= count:
         bottles[fromId]['count'] -= count
-        bottles[toId].count += count
+        bottles[toId]['count'] += count
         tools.save(bottles)
         return json.dumps({"result":"ok"})
     else:
