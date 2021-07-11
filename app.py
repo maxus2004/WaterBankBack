@@ -10,7 +10,8 @@ bottles = tools.load()
 @app.route('/create')
 def createcmd():
     if not check(request.cookies.get('key')):
-        returnjson.dumps({"result":"not_authorised"})
+        return json.dumps({"result":"not_authorised"})
+    
     location = request.args.get('id')
     public = request.args.get('public')=='true'
     bottles[location] = {'count':0,'public':public};
@@ -19,10 +20,16 @@ def createcmd():
 
 @app.route('/getall')
 def getallcmd():
+    if not check(request.cookies.get('key')):
+        return json.dumps({"result":"not_authorised"})
+    
     return json.dumps(bottles)
 
 @app.route('/get')
 def getcmd():
+    if not check(request.cookies.get('key')):
+        return json.dumps({"result":"not_authorised"})
+
     location = request.args.get('id')
     return json.dumps(bottles[location])
     
@@ -36,6 +43,9 @@ def getpubliccmd():
 
 @app.route('/set')
 def setcmd():
+    if not check(request.cookies.get('key')):
+        return json.dumps({"result":"not_authorised"})
+    
     location = request.args.get('id')
     count = int(request.args.get('count'))
     bottles[location]['count'] = count
@@ -44,6 +54,9 @@ def setcmd():
 
 @app.route('/add')
 def addcmd():
+    if not check(request.cookies.get('key')):
+        return json.dumps({"result":"not_authorised"})
+    
     location = request.args.get('id')
     count = int(request.args.get('count'))
     bottles[location]['count'] += count
@@ -52,6 +65,9 @@ def addcmd():
     
 @app.route('/remove')
 def removecmd():
+    if not check(request.cookies.get('key')):
+        return json.dumps({"result":"not_authorised"})
+    
     location = request.args.get('id')
     count = int(request.args.get('count'))
     if bottles[location]['count'] >= count:
@@ -63,6 +79,9 @@ def removecmd():
         
 @app.route('/move')
 def movecmd():
+    if not check(request.cookies.get('key')):
+        return json.dumps({"result":"not_authorised"})
+    
     fromId = request.args.get('from')
     toId = request.args.get('to')
     count = int(request.args.get('count'))
@@ -73,5 +92,7 @@ def movecmd():
         return json.dumps({"result":"ok"})
     else:
         return json.dumps({"result":"not_enough_bottles"})
-    
+   
+   
+   
 app.run(port=5000)
