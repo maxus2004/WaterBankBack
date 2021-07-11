@@ -23,6 +23,14 @@ def getallcmd():
 def getcmd():
     location = request.args.get('id')
     return json.dumps(bottles[location])
+    
+@app.route('/getpublic')
+def getpubliccmd():
+    array = {}
+    for id in bottles:
+        if bottles[id]['public']:
+            array[id]=bottles[id]
+    return json.dumps(array)
 
 @app.route('/set')
 def setcmd():
