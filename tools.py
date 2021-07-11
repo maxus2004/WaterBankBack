@@ -1,5 +1,5 @@
 def save(bottles):
-    file = open('bottles'.json', 'w')
+    file = open('bottles.json', 'w')
     json.dump(bottles, file)
     file.close()
     
