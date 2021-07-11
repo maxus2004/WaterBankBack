@@ -1,10 +1,10 @@
 def save(bottles):
     file = open('result.json', 'w')
-    json.dump(file, bottles)
+    json.dump(bottles, file)
     file.close()
     
 def load():
     file = open('result.json', 'r')
-    bottles = json.loads(file.read())
+    bottles = json.load(file)
     file.close()
     return bottles
