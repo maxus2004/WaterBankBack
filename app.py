@@ -3,7 +3,7 @@ from flask import request
 
 app = Flask(__name__)
 
-@app.route('/get')
+@app.route('/api/get')
 def index():
     location = request.args.get('id')
     return 'hello ' + location
