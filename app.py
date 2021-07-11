@@ -8,7 +8,7 @@ app = Flask(__name__)
 bottles = tools.load()
 
 @app.route('/login')
-def getallcmd():
+def logincmd():
     password = request.args.get('pass')
     if password != "pass":
         return json.dumps({"result":"not_authorised"})
