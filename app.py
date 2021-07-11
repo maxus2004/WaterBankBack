@@ -8,7 +8,7 @@ app = Flask(__name__)
 bottles = tools.load()
 
 @app.route('/create')
-def setcmd():
+def createcmd():
     location = request.args.get('id')
     public = int(request.args.get('type'))
     bottles[location] = {count:0,public:public};
