@@ -34,6 +34,6 @@ def removecmd():
         bottles[location] -= count
         return json.dumps({"result":"ok"})
     else:
-    return json.dumps({"result":"not_enough_bottles"})
+        return json.dumps({"result":"not_enough_bottles"})
     
 app.run(port=5000)
