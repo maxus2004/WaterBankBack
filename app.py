@@ -22,7 +22,7 @@ def getallcmd():
 @app.route('/get')
 def getcmd():
     location = request.args.get('id')
-    return json.dumps({"count":bottles[location]})
+    return json.dumps(bottles[location])
 
 @app.route('/set')
 def setcmd():
