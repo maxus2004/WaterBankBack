@@ -20,4 +20,5 @@ def load():
 def check(key):
     return key in keys
     
-def makeKey
+def makeKey:
+    keys.add(''.join(random.choices(string.ascii_uppercase + string.digits, k=N)))
