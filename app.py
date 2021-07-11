@@ -1,30 +1,31 @@
 from flask import Flask
 from flask import request
+import json
 
 app = Flask(__name__)
 
 @app.route('/get')
 def getcmd():
     location = request.args.get('id')
-    return 'n bottles in ' + location
+    return json.dumps({"count":5})
 
 @app.route('/set')
 def setcmd():
     location = request.args.get('id')
     count = request.args.get('count')
-    return 'set bottles in ' + location + ' to ' + count
-    
+    return json.dumps({"result":"ok"})
+
 @app.route('/add')
 def addcmd():
     location = request.args.get('id')
     count = request.args.get('count')
-    return 'added ' + count + ' bottles to ' + location
+    return json.dumps({"result":"ok"})
     
 @app.route('/remove')
 def removecmd():
     location = request.args.get('id')
     count = request.args.get('count')
-    return 'removed ' + count + ' bottles from ' + location
+    return json.dumps({"result":"ok"})
     
     
 app.run(port=5000)
