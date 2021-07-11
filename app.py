@@ -7,6 +7,14 @@ app = Flask(__name__)
 
 bottles = tools.load()
 
+@app.route('/create')
+def setcmd():
+    location = request.args.get('id')
+    public = int(request.args.get('type'))
+    bottles[location] = {count:0,public:public};
+    tools.save(bottles)
+    return json.dumps({"result":"ok"})
+
 @app.route('/getall')
 def getallcmd():
     return json.dumps(bottles)
@@ -20,7 +28,7 @@ def getcmd():
 def setcmd():
     location = request.args.get('id')
     count = int(request.args.get('count'))
-    bottles[location] = count
+    bottles[location].count = count
     tools.save(bottles)
     return json.dumps({"result":"ok"})
 
@@ -28,7 +36,7 @@ def setcmd():
 def addcmd():
     location = request.args.get('id')
     count = int(request.args.get('count'))
-    bottles[location] += count
+    bottles[location].count += count
     tools.save(bottles)
     return json.dumps({"result":"ok"})
     
@@ -36,8 +44,8 @@ def addcmd():
 def removecmd():
     location = request.args.get('id')
     count = int(request.args.get('count'))
-    if bottles[location] >= count:
-        bottles[location] -= count
+    if bottles[location].count >= count:
+        bottles[location].count -= count
         tools.save(bottles)
         return json.dumps({"result":"ok"})
     else:
@@ -48,9 +56,9 @@ def movecmd():
     fromId = request.args.get('from')
     toId = request.args.get('to')
     count = int(request.args.get('count'))
-    if bottles[fromId] >= count:
-        bottles[fromId] -= count
-        bottles[toId] += count
+    if bottles[fromId].count >= count:
+        bottles[fromId].count -= count
+        bottles[toId].count += count
         tools.save(bottles)
         return json.dumps({"result":"ok"})
     else:
