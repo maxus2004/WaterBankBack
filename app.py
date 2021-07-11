@@ -7,11 +7,16 @@ app = Flask(__name__)
 
 bottles = tools.load()
 
+class Place():
+    def __init__(self, public, count):
+        self.public = public
+        self.count = count
+
 @app.route('/create')
 def createcmd():
     location = request.args.get('id')
     public = bool(request.args.get('public'))
-    bottles[location] = {'count':0,'public':public};
+    bottles[location] = Place(0,public};
     tools.save(bottles)
     return json.dumps({"result":"ok"})
 
