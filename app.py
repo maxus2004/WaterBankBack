@@ -30,11 +30,11 @@ def addcmd():
 def removecmd():
     location = request.args.get('id')
     count = request.args.get('count')
-    if(bottles[location] >= count)
+    if bottles[location] >= count:
         bottles[location] -= count
         bottles[location])
         return json.dumps({"result":"ok"})
-    else
+    else:
     return json.dumps({"result":"not_enough_bottles"})
     
 app.run(port=5000)
