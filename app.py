@@ -9,6 +9,8 @@ bottles = tools.load()
 
 @app.route('/create')
 def createcmd():
+    if not check(request.cookies.get('key')):
+        returnjson.dumps({"result":"not_authorised"})
     location = request.args.get('id')
     public = request.args.get('public')=='true'
     bottles[location] = {'count':0,'public':public};
