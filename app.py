@@ -13,7 +13,7 @@ def logincmd():
     if password != "pass":
         return json.dumps({"result":"not_authorised"})
     key = tools.makeKey()
-    resp = make_response(json.dumps({"key":key}))
+    resp = app.make_response(json.dumps({"key":key}))
     resp.set_cookie('key', key)
     return resp
 
