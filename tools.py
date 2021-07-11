@@ -17,5 +17,5 @@ def load():
     else:
         return {}
         
-def checkLogin(key):
+def check(key):
     return key in keys
