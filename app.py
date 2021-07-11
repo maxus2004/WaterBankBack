@@ -21,7 +21,7 @@ def addcmd():
     return 'added ' + count + ' bottles to ' + location
     
 @app.route('/remove')
-def addcmd():
+def removecmd():
     location = request.args.get('id')
     count = request.args.get('count')
     return 'removed ' + count + ' bottles from ' + location
