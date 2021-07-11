@@ -1,5 +1,7 @@
 import os
 import json
+import random
+import string
 
 keys = []
 
