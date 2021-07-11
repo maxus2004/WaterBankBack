@@ -9,7 +9,7 @@ bottles = tools.load()
 
 @app.route('/create')
 def createcmd():
-    if not check(request.cookies.get('key')):
+    if not tools.check(request.cookies.get('key')):
         return json.dumps({"result":"not_authorised"})
     
     location = request.args.get('id')
@@ -20,14 +20,14 @@ def createcmd():
 
 @app.route('/getall')
 def getallcmd():
-    if not check(request.cookies.get('key')):
+    if not tools.check(request.cookies.get('key')):
         return json.dumps({"result":"not_authorised"})
     
     return json.dumps(bottles)
 
 @app.route('/get')
 def getcmd():
-    if not check(request.cookies.get('key')):
+    if not tools.check(request.cookies.get('key')):
         return json.dumps({"result":"not_authorised"})
 
     location = request.args.get('id')
@@ -43,7 +43,7 @@ def getpubliccmd():
 
 @app.route('/set')
 def setcmd():
-    if not check(request.cookies.get('key')):
+    if not tools.check(request.cookies.get('key')):
         return json.dumps({"result":"not_authorised"})
     
     location = request.args.get('id')
@@ -54,7 +54,7 @@ def setcmd():
 
 @app.route('/add')
 def addcmd():
-    if not check(request.cookies.get('key')):
+    if not tools.check(request.cookies.get('key')):
         return json.dumps({"result":"not_authorised"})
     
     location = request.args.get('id')
@@ -65,7 +65,7 @@ def addcmd():
     
 @app.route('/remove')
 def removecmd():
-    if not check(request.cookies.get('key')):
+    if not tools.check(request.cookies.get('key')):
         return json.dumps({"result":"not_authorised"})
     
     location = request.args.get('id')
@@ -79,7 +79,7 @@ def removecmd():
         
 @app.route('/move')
 def movecmd():
-    if not check(request.cookies.get('key')):
+    if not tools.check(request.cookies.get('key')):
         return json.dumps({"result":"not_authorised"})
     
     fromId = request.args.get('from')
