@@ -7,10 +7,13 @@ app = Flask(__name__)
 
 bottles = tools.load()
 
+@app.route('/getall')
+def getallcmd():
+    return json.dumps(bottles)
+
 @app.route('/get')
 def getcmd():
     location = request.args.get('id')
-   
     return json.dumps({"count":bottles[location]})
 
 @app.route('/set')
