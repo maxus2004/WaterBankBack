@@ -32,7 +32,6 @@ def removecmd():
     count = request.args.get('count')
     if bottles[location] >= count:
         bottles[location] -= count
-        bottles[location])
         return json.dumps({"result":"ok"})
     else:
     return json.dumps({"result":"not_enough_bottles"})
