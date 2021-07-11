@@ -10,7 +10,7 @@ bottles = tools.load()
 @app.route('/login')
 def logincmd():
     password = request.args.get('pass')
-    if password != "pass":
+    if password != "бутылочная мафия":
         return json.dumps({"status":"not_authorised"})
     key = tools.makeKey()
     resp = app.make_response(json.dumps({"key":key}))
