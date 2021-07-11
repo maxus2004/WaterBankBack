@@ -16,7 +16,7 @@ class Place():
 def createcmd():
     location = request.args.get('id')
     public = bool(request.args.get('public'))
-    bottles[location] = Place(0,public};
+    bottles[location] = Place(0,public);
     tools.save(bottles)
     return json.dumps({"result":"ok"})
 
