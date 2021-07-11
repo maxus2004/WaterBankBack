@@ -1,7 +1,7 @@
 import os
 import json
 
-keys = ['qwertyuiop']
+keys = []
 
 def save(bottles):
     file = open('bottles.json', 'w')
@@ -19,3 +19,5 @@ def load():
         
 def check(key):
     return key in keys
+    
+def makeKey
