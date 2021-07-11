@@ -23,6 +23,6 @@ def check(key):
     return key in keys
     
 def makeKey():
-    key = ''.join(random.choices(string.ascii_uppercase + string.digits, k=16))
+    key = ''.join(random.choices(string.ascii_uppercase + string.digits, k=32))
     keys.append(key)
     return key
