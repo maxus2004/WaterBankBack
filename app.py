@@ -11,7 +11,7 @@ bottles = tools.load()
 def createcmd():
     location = request.args.get('id')
     public = bool(request.args.get('public'))
-    bottles[location] = {count:0,public:public};
+    bottles[location] = {'count':0,'public':public};
     tools.save(bottles)
     return json.dumps({"result":"ok"})
 
