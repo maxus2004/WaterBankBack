@@ -88,8 +88,7 @@ def removecmd():
 @app.route('/move')
 def movecmd():
     if not tools.check(request.cookies.get('key')):
-        return json.dumps({"status":"not_authorised"})
-    
+        return unauth
     fromId = request.args.get('from')
     toId = request.args.get('to')
     count = int(request.args.get('count'))
@@ -97,10 +96,9 @@ def movecmd():
         bottles[fromId]['count'] -= count
         bottles[toId]['count'] += count
         tools.save(bottles)
-        return json.dumps({"status":"ok"})
+        return ok
     else:
-        return json.dumps({"status":"not_enough_bottles"})
-   
+        return notenouth
    
    
 app.run(port=5000)
