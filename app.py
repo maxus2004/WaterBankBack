@@ -14,7 +14,7 @@ notenouth = json.dumps({"status":"not_enough_bottles"})
 @app.route('/login')
 def logincmd():
     password = request.args.get('pass')
-    if not tools.checkPass()
+    if not tools.checkPass():
         return unaut
     key = tools.makeKey()
     resp = app.make_response(json.dumps({"key":key}))
