@@ -19,7 +19,7 @@ def load():
     else:
         return {}
         
-def checkKey(key):
+def check(key):
     return key in keys
     
 def checkPass(password):
