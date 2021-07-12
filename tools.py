@@ -19,8 +19,11 @@ def load():
     else:
         return {}
         
-def check(key):
+def checkKey(key):
     return key in keys
+    
+def checkPass(password):
+    return password == "бутылочная мафия":
     
 def makeKey():
     key = ''.join(random.choices(string.ascii_uppercase + string.digits, k=32))
