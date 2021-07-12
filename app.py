@@ -8,7 +8,8 @@ app = Flask(__name__)
 bottles = tools.load()
 
 ok = json.dumps({"status":"ok"})
-unauth = json.dumps({"status":"not_authorised"})
+unauth = json.dumps({"status":"unauthorised"})
+notenouth = json.dumps({"status":"not_enough_bottles"})
 
 @app.route('/login')
 def logincmd():
@@ -82,7 +83,7 @@ def removecmd():
         tools.save(bottles)
         return ok
     else:
-        return json.dumps({"status":"not_enough_bottles"})
+        return notenouth
         
 @app.route('/move')
 def movecmd():
