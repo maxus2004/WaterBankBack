@@ -7,11 +7,14 @@ app = Flask(__name__)
 
 bottles = tools.load()
 
+ok = json.dumps({"status":"ok"})
+unauth = json.dumps({"status":"not_authorised"})
+
 @app.route('/login')
 def logincmd():
     password = request.args.get('pass')
     if password != "бутылочная мафия":
-        return json.dumps({"status":"not_authorised"})
+        return unaut
     key = tools.makeKey()
     resp = app.make_response(json.dumps({"key":key}))
     resp.set_cookie('key', key)
@@ -20,26 +23,23 @@ def logincmd():
 @app.route('/create')
 def createcmd():
     if not tools.check(request.cookies.get('key')):
-        return json.dumps({"status":"not_authorised"})
-    
+        return unauth
     location = request.args.get('id')
     public = request.args.get('public')=='true'
     bottles[location] = {'count':0,'public':public};
     tools.save(bottles)
-    return json.dumps({"status":"ok"})
+    return ok
 
 @app.route('/getall')
 def getallcmd():
     if not tools.check(request.cookies.get('key')):
-        return json.dumps({"status":"not_authorised"})
-    
+        return unauth
     return json.dumps(bottles)
 
 @app.route('/get')
 def getcmd():
     if not tools.check(request.cookies.get('key')):
-        return json.dumps({"status":"not_authorised"})
-
+        return unauth
     location = request.args.get('id')
     return json.dumps(bottles[location])
     
@@ -54,36 +54,33 @@ def getpubliccmd():
 @app.route('/set')
 def setcmd():
     if not tools.check(request.cookies.get('key')):
-        return json.dumps({"status":"not_authorised"})
-    
+        return unauth
     location = request.args.get('id')
     count = int(request.args.get('count'))
     bottles[location]['count'] = count
     tools.save(bottles)
-    return json.dumps({"status":"ok"})
+    return ok
 
 @app.route('/add')
 def addcmd():
     if not tools.check(request.cookies.get('key')):
-        return json.dumps({"status":"not_authorised"})
-    
+        return unauth
     location = request.args.get('id')
     count = int(request.args.get('count'))
     bottles[location]['count'] += count
     tools.save(bottles)
-    return json.dumps({"status":"ok"})
+    return ok
     
 @app.route('/remove')
 def removecmd():
     if not tools.check(request.cookies.get('key')):
-        return json.dumps({"status":"not_authorised"})
-    
+        return unauth
     location = request.args.get('id')
     count = int(request.args.get('count'))
     if bottles[location]['count'] >= count:
         bottles[location]['count'] -= count
         tools.save(bottles)
-        return json.dumps({"status":"ok"})
+        return ok
     else:
         return json.dumps({"status":"not_enough_bottles"})
         
